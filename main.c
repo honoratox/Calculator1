@@ -2,48 +2,70 @@
   author: @Pedro Honorato
 */
 #include <stdio.h>
-#include <math.h>
 
-int main(){
-  int n; // escolha da opção de cálculo
-  float num1; // variáveis para a soma
-  float num2; // variáveis para a soma
-  float soma, sub, mult, div; // op de cálculo
+int main() {
+    int op; // escolha da opção de cálculo
+    int n;  // quantidade de valores
+    float resultado = 0;
+    float num;
 
-  //entrada de dados
-  printf("\n Bem vindo a calculadora!");
-  printf("\n Digite o valor correspondente ao calculo que deseja fazer");
-  printf("\n 1- Soma\n 2- Subtracao\n 3- Multiplicacao\n 4- Divisao\n Opcao: ");
-  scanf("%d", &n);
-  //operações matemáticas
-  if (n==1){
-    printf("\n Digite os valores pra somar: ");
-    scanf("%f %f", &num1, &num2);
+    // entrada de dados
+    printf("\n Bem vindo a calculadora!");
+    printf("\n Digite o valor correspondente ao cálculo que deseja fazer");
+    printf("\n 1- Soma\n 2- Subtracao\n 3- Multiplicacao\n 4- Divisao\n Opcao: ");
+    scanf("%d", &op);
 
-    soma = num1+num2;
-    printf("\n A soma de %0.2f+%0.2f eh: %0.2f", num1, num2, soma);
-  }
-  if (n==2){
-    printf("\n Digite os valores pra subtrair: ");
-    scanf("%f %f", &num1, &num2);
+    printf("\n Digite quantos valores deseja inserir para calcular: ");
+    scanf("%d", &n);
 
-    sub = num1-num2;
-    printf("\n A subtracao de %0.2f-%0.2f eh: %0.2f", num1, num2, sub);
-  }
-  if (n==3){
-    printf("\n Digite os valores pra multiplicar: ");
-    scanf("%f %f", &num1, &num2);
+    if (op == 1) {
+        for (int i = 0; i < n; i++) {
+            printf("\n Digite o valor: ");
+            scanf("%f", &num);
+            resultado += num;
+        }
+        printf("\n A soma dos termos eh: %.2f", resultado);
+    } else if (op == 2) {
+        printf("\n Digite o valor: ");
+        scanf("%f", &num);
+        resultado = num;
 
-    mult = num1*num2;
-    printf("\n A multiplicacao de %0.2fx%0.2f eh: %0.2f", num1, num2, mult);
-  }
-  if (n==4){
-    printf("\n Digite os valores pra dividir: ");
-    scanf("%f %f", &num1, &num2);
+        for (int i = 1; i < n; i++) {
+            printf("\n Digite o valor: ");
+            scanf("%f", &num);
+            resultado -= num;
+        }
+        printf("\n A subtracao dos termos eh: %.2f", resultado);
+    } else if (op == 3) {
+        resultado = 1;
 
-    div = num1/num2;
-    printf("\n A divisao de %0.2f/%0.2f eh: %0.2f", num1, num2, div);
-  }
+        for (int i = 0; i < n; i++) {
+            printf("\n Digite o valor: ");
+            scanf("%f", &num);
+            resultado *= num;
+        }
+        printf("\n A multiplicacao dos termos eh: %.2f", resultado);
+    } else if (op == 4) {
+        printf("\n Digite o valor: ");
+        scanf("%f", &num);
+        resultado = num;
 
-  return 0;
+        for (int i = 1; i < n; i++) {
+            printf("\n Digite o valor: ");
+            scanf("%f", &num);
+            
+            if (num != 0) {
+                resultado /= num;
+            } else {
+                printf("Erro: divisao por zero.");
+                return 1; 
+            }
+        }
+        printf("\n A divisao dos termos eh: %.2f", resultado);
+    } else {
+        printf("\n Opcao invalida.");
+        return 1; 
+    }
+
+    return 0; 
 }
